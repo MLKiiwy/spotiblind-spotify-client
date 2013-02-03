@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Spotify CSS Files -->
+		<link rel="stylesheet" type="text/css" charset="utf-8" href="sp://resources/css/eve.css">
+		<link rel="stylesheet" type="text/css" charset="utf-8" href="sp://resources/css/api.css">
+		<link rel="stylesheet" type="text/css" charset="utf-8" href="sp://resources/css/player.css">
+		<link rel="stylesheet" type="text/css" charset="utf-8" href="sp://resources/css/ui.css">
+		<link rel="stylesheet" type="text/css" charset="utf-8" href="sp://resources/css/list.css">
+		<link rel="stylesheet" type="text/css" charset="utf-8" href="sp://test/css/main.css">
+		<!-- Scripts Files -->
+		<script src="http://localhost:8080/socket.io/socket.io.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+		<script src="sp://spotiblind/js/main.js"></script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<!-- Start Screen -->
+			<div data-rel="startScreen" class="screen">
+				<button data-rel="startButton" class="button icon">
+					<span class="plus"></span>
+					Start
+				</button>
+			</div>
+			<!-- Waiting screen -->
+			<div data-rel="waitingScreen" class="screen">
+				<span class="throbber">Waiting ...</span>
+			</div>
+			<!-- Game Screen -->
+			<div data-rel="gameScreen" class="screen" style="display:none;">
+				<!-- Current playing -->
+				<div data-rel="currentPlaying" class="song-container">
+					<div data-rel="currentCover"></div>
+					<span data-rel="currentTitle"></span>
+					<span data-rel="currentArtist"></span>
+				</div>
+				<!-- Log -->
+				<div data-rel="log" class="log-container">
+				</div>
+				<!-- Bottom -->
+				<div class="bottom-container">
+					<!-- Player list -->
+					<div class="player-list-container" data-rel="playerList">
+						<h2>Liste des joueurs</h2>
+						<ul class="player-list"></ul>
+					</div>
+					<!-- Playlist -->
+					<div class="playlist-container">
+						<div id="playlist-drop" data-rel="playlist-drop"></div>
+						<div data-rel="playlist" style="display:none;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /wrapper -->
+	</body>
+</html>
