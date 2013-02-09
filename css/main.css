@@ -1,49 +1,88 @@
-html {
-	background-color: white;
+@import url("sp://resources/css/eve.css");
+@import url("sp://resources/css/api.css");
+@import url("sp://resources/css/player.css");
+@import url("sp://resources/css/ui.css");
+@import url("sp://resources/css/list.css");
+@import url("sp://resources/css/api.css");
+
+html,body {
+	width:100%;
+	height:100%;
 }
 
 #wrapper {
 	width:100%;
 	height:100%;
-	background-color: white;
+	position:relative;
 }
 
-.logo {
-	margin:auto 10px;
+.screen {
+	position:relative;
+	width:100%;
+	height:100%;
 }
 
-.loader {
+.throbber {
 
 }
 
-.qrcode {
+.log-container {
 	position:absolute;
-	top:150px;
-	left:50px;
+	top:0;
+	right:0;
+	width:50%;
+	height:25%;
+	background-color:orange;
 }
 
-.loader img {
-	margin:auto auto;
-}
-
-.problem {
-	color:red;
-	font-size:16px;
-}
-
-.player-list {
+.song-container {
 	position:absolute;
-	right:150px;
-	top:150px;
-	font-size: 14px;
+	top:0;
+	left:0;
+	width:50%;
+	height:25%;
+	background-color:red;
 }
 
-.player-list li {
-	
+.song-container .sp-image {
+	width:75px;
+	height:75px;
 }
 
-.player-list li .points {
-	font-size: 18px;
-	color:blue;
-	font-weight:bold;
+.bottom-container {
+	position:absolute;
+	bottom:0;
+	left:0;
+	width:100%;
+	height:75%;
+}
+
+.player-list-container {
+	position:absolute;
+	bottom:0;
+	left:0;
+	width:25%;
+	height:100%;
+	background-color:yellow;
+}
+
+.playlist-container {
+	position:absolute;
+	bottom:0;
+	right:0;
+	width:75%;
+	height:100%;
+	background-color:grey;
+}
+
+.playlist-container #playlist-drop {
+	position:absolute;
+	width:100%;
+	height:100%;
+}
+
+.playlist-container .sp-list {
+	position:absolute;
+	width:100%;
+	height:100%;
 }

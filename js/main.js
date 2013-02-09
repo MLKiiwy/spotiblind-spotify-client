@@ -9,12 +9,15 @@ var Game = {
 	connectionState:'disconnected',
 	connectionWantedState:null,
 
+	currentTrack:null,
+	currentPlaylist:null,
+
 	init: function() {
 		var self = Game;
 
 		self.sp = getSpotifyApi();
-		self.models = self.sp.require('$api/models');
-		self.views = self.sp.require('$api/views');
+		self.models = self.sp.require('sp://import/scripts/api/models');
+		self.views = self.sp.require('sp://import/scripts/api/views');
 
 		self._bindInterface();
 		self._bindSpotifyEvents();
@@ -39,7 +42,7 @@ var Game = {
 	},
 	_initPlaylistDroping: function() {
 		var self = Game,
-			dropBox = document.querySelector('playlist-drop');
+			dropBox = document.querySelector('#playlist-drop');
 
 		dropBox.addEventListener('dragstart', function(e) {
 			e.dataTransfer.setData('text/html', this.innerHTML);
@@ -112,15 +115,40 @@ var Game = {
 		console.log('disconnected');
 	},
 	setCurrentTrack: function(currentTrack) {
-		var self = Game;
+		var self = Game,
+			bloc = $('[data-rel="currentPlaying"]'),
+			coverElement = bloc.find('[data-rel="currentCover"]'),
+			titleElement = bloc.find('[data-rel="currentTitle"]'),
+			artistElement = bloc.find('[data-rel="currentArtist"]'),
+			artistStr = '';
 
-		// TODO
+		if(self.currentTrack == currentTrack) {
+			return false;
+		}
+
+		self.currentTrack = currentTrack;
+
+		var cover = new self.views.Image(self.currentTrack.data.album.cover, self.currentTrack.uri, 'title');
+		coverElement.html($(cover.node));
+
+		titleElement.html(self.currentTrack.name);
+		
+		for(var i=0; i<self.currentTrack.artists.length; i++) {
+			artistStr+= self.currentTrack.artists[i].name;
+			if(i!= (self.currentTrack.artists.length - 1)) {
+				artistStr += ', ';
+			}
+		}
+		artistElement.html(artistStr);
+
 	},
 	setPlaylist: function(URI) {
 		var self = Game,
 			playlist = self.models.Playlist.fromURI(URI),
 			list = new self.views.List(playlist),
 			playlistContainer = $('[data-rel="playlist"]');
+
+		self.currentPlaylist = playlist;
 
 		playlistContainer.show();
 		playlistContainer.append($(list.node));
